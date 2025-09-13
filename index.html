@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repo Downloader</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <div class="card shadow p-4 rounded-4">
+      <h2 class="text-center mb-4">📂 Repo Downloader</h2>
+
+      <!-- Language -->
+      <div class="mb-3">
+        <label class="form-label">Select Language</label>
+        <select class="form-select" id="language">
+          <option value="">-- Choose Language --</option>
+          <option value="java">Java</option>
+          <option value="ts">TypeScript</option>
+          <option value="python">Python</option>
+        </select>
+      </div>
+
+      <!-- Tool -->
+      <div class="mb-3">
+        <label class="form-label">Select Tool</label>
+        <select class="form-select" id="tool">
+          <option value="">-- Choose Tool --</option>
+          <option value="selenium">Selenium</option>
+          <option value="playwright">Playwright</option>
+          <option value="restassured">RestAssured</option>
+        </select>
+      </div>
+
+      <!-- Type -->
+      <div class="mb-3">
+        <label class="form-label">Select Type</label>
+        <select class="form-select" id="type">
+          <option value="">-- Choose Type --</option>
+          <option value="ui">UI</option>
+          <option value="api">API</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary btn-lg w-100" onclick="downloadRepo()">⬇️ Download Repo</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function downloadRepo() {
+      const language = document.getElementById('language').value;
+      const tool = document.getElementById('tool').value;
+      const type = document.getElementById('type').value;
+
+      if (!language || !tool || !type) {
+        alert("⚠️ Please select all options!");
+        return;
+      }
+
+      // Map selections to GitHub repos (replace YOUR_GITHUB with your username)
+      const repoMap = {
+        "java-selenium-ui": "https://github.com/amit-automationQA/Selenium-Hybrid-AEM-Test-Automation-Framework/archive/refs/heads/master.zip",
+        "ts-playwright-uiapi": "https://github.com/YOUR_GITHUB/ts-playwright-uiapi/archive/refs/heads/master.zip",
+        "java-restassured-api": "https://github.com/YOUR_GITHUB/java-restassured-api/archive/refs/heads/master.zip",
+        "python-playwright-ui": "https://github.com/amit-automationQA/PlaywrightPythonFramework/archive/refs/heads/master.zip",
+      };
+
+      // Build key
+      let key = `${language}-${tool}-${type}`.toLowerCase();
+
+      if (repoMap[key]) {
+        window.location.href = repoMap[key];
+      } else {
+        alert("❌ No matching repo found for this combination.");
+      }
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
